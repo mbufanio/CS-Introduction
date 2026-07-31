@@ -205,8 +205,8 @@ for i in range(36):
 # SECTION 7 · CLASS DESIGN MOMENT  —  ⭐ TWEAK THESE ⭐
 # ------------------------------------------------------------------------------
 # The class votes, you edit the three dials below, re-run the file, and
-# press Enter straight through to here (or highlight this section and use
-# Shift+Enter). Capital letters = a signal to humans: these are the dials.
+# tap Enter straight through the earlier sections to get back here (they
+# replay fast). Capital letters = a signal to humans: these are the dials.
 #
 #   SHAPE_SIDES   3 = triangles, 4 = squares, 5 = pentagons, 6 = hexagons...
 #   TILT          angles that divide 360 close neatly (5, 8, 9, 10, 12, 15,

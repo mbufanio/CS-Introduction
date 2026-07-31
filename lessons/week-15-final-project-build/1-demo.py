@@ -133,8 +133,8 @@ def teachers_lounge():
 # ==============================================================================
 
 print("*" * 44)
-print("*      ESCAPE THE TEACHERS' LOUNGE          *")
-print("*      a text adventure by this class       *")
+print("*      ESCAPE THE TEACHERS' LOUNGE         *")
+print("*      a text adventure by this class      *")
 print("*" * 44)
 
 playing = "Y"
