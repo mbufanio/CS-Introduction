@@ -86,8 +86,10 @@ you want a big finish.
 
 ### `handout.md` — the only paper in the room
 
-One page. Print one per student (VS Code: open the file → `Ctrl+Shift+V` for preview →
-print from the preview, or paste into a doc and print). It has:
+One page. Print one per student — each lesson folder has a ready-made `handout.pdf`
+typeset to fit a single page, so printing is just opening that file. (`handout.md` is
+the editable source; if you customize it, re-print via VS Code's markdown preview,
+`Ctrl+Shift+V`.) It has:
 
 - The day's vocabulary
 - 2–3 paper exercises ("be the computer", spot-the-bug, trace-the-code)

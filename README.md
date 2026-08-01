@@ -57,7 +57,8 @@ python lessons/week-01-what-is-a-program/1-demo.py
 | `2-fill-in-the-blank.py` | Participation file | Blanks shown as `____` — kids call out answers, you type and run |
 | `3-predict-the-output.py` | Voting game | Class votes A/B/C on what the code prints, then you run it to reveal |
 | `4-challenge.py` | Stretch material | For fast classes, curious kids, or weeks with extra time |
-| `handout.md` | Printable 1-pager | Vocabulary, paper exercises, optional take-home brain teaser |
+| `handout.md` | Printable 1-pager (source) | Vocabulary, paper exercises, optional take-home brain teaser |
+| `handout.pdf` | Print-ready version | The same handout typeset as a one-page PDF — just print it |
 | `answer-key.md` | Teacher answers | Filled-in blanks, predict-the-output answers with explanations, handout key |
 
 ## Requirements
