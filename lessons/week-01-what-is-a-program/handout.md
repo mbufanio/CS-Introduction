@@ -10,18 +10,18 @@
 |------|---------------|
 | **program** | a list of instructions the computer follows, in order, exactly |
 | **code** | the written-out instructions |
-| **`print()`** | the command that displays something on the screen |
+| **`disp()`** | the command that displays something on the screen |
 | **string** | text in quotes — the computer repeats it without doing math |
-| **bug / error** | a mistake in code; the computer points at it with a message |
+| **bug / error** | a mistake in code; the computer points at it with red text |
 
 ## 1 · Be the computer 🤖
 
 You are the computer. Follow the code *exactly* and write what the screen would show.
 
-```python
-print("Welcome!")
-print(3 + 4)
-print("3 + 4")
+```matlab
+disp('Welcome!')
+disp(3 + 4)
+disp('3 + 4')
 ```
 
 The screen shows:
@@ -36,10 +36,10 @@ The screen shows:
 
 Each line has **one** mistake. Circle it.
 
-```python
-1.  Print("hello")
-2.  print("hello)
-3.  print(hello there)
+```matlab
+1.  Disp('hello')
+2.  disp('hello)
+3.  disp(hello there)
 ```
 
 ## 3 · True or false?
@@ -47,7 +47,7 @@ Each line has **one** mistake. Circle it.
 Circle one for each:
 
 - The computer can rearrange your instructions into a better order. **T / F**
-- `print(2 + 2)` and `print("2 + 2")` show the same thing. **T / F**
+- `disp(2 + 2)` and `disp('2 + 2')` show the same thing. **T / F**
 - An error message means the computer is telling you where it got stuck. **T / F**
 
 ---
