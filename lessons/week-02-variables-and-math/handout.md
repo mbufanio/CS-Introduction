@@ -2,48 +2,55 @@
 
 **Name: ______________________ Date: __________**
 
-> A **variable** is a labeled box in the computer's memory. `=` puts a value in the box.
+> A **variable** is a labeled box in the computer's memory. `=` puts a value in the box —
+> and the **Workspace pane** shows every box, live.
 
 ## Today's words
 
 | Word | What it means |
 |------|---------------|
 | **variable** | a labeled box that holds one value |
+| **Workspace** | the pane showing every box — the computer's memory, live |
 | **assignment** | putting a value in a box: `score = 10` |
 | **reassignment** | replacing what's in the box (`score = score + 10` — take, add, put back!) |
-| **expression** | a math phrase Python can work out, like `3 * x + 2` |
-| **operator** | a math symbol: `+  -  *  /  **  //  %` |
+| **semicolon `;`** | the hush key — the line still works, just silently |
+| **`ans`** | MATLAB's scratch box for unnamed answers |
+| **operator** | a math symbol: `+  -  *  /  ^` (plus the machines `floor()` and `mod()`) |
 
 ## 1 · Be the computer 🤖
 
-Follow the code *exactly* and write what the screen shows. (Careful on line 3!)
+Follow the code *exactly* and write what the screen shows. (Careful — some lines
+are hushed, and the last one is not!)
 
-```python
-x = 10
-print(x)
-print("x")
+```matlab
+x = 10;
+disp(x)
+disp('x')
 x = x + 5
-print(x)
 ```
 
-> Line 1: ________ Line 2: ________ Line 3: ________
+> Line 1 shows: __________ Line 2 shows: __________ Line 3 shows: __________
+>
+> Line 4 has no hush key, so MATLAB announces: `x = ______`
+>
+> After all four lines, the Workspace row for `x` holds: ________
 
-## 2 · PEMDAS drill — evaluate like Python 🧮
+## 2 · PEMDAS drill — evaluate like MATLAB 🧮
 
-```python
-print(2 + 3 * 4)      # → ________
-print((2 + 3) * 4)    # → ________
-print(10 - 2 * 3)     # → ________
-print(2 ** 3)         # → ________
+```matlab
+disp(2 + 3 * 4)      % → ________
+disp((2 + 3) * 4)    % → ________
+disp(10 - 2 * 3)     % → ________
+disp(2 ^ 3)          % → ________
 ```
 
-## 3 · The pizza operators 🍕
+## 3 · The pizza machines 🍕
 
 23 slices arrive for 4 kids.
 
-```python
-print(23 // 4)   # slices EACH:      ________
-print(23 % 4)    # slices LEFT OVER: ________
+```matlab
+disp(floor(23 / 4))   % slices EACH:      ________
+disp(mod(23, 4))      % slices LEFT OVER: ________
 ```
 
 Check yourself: (each × 4) + left over should equal ________.

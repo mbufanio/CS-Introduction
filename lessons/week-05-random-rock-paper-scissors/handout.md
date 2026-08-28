@@ -2,17 +2,17 @@
 
 **Name: ______________________ Date: __________**
 
-> `import random` borrows a **toolbox**. Its tools give every outcome an **equal chance**.
+> `randi` rolls the dice. The **mapping** gives the numbers meaning. Every outcome gets an **equal chance**.
 
 ## Today's words
 
 | Word | What it means |
 |------|---------------|
-| **`import`** | borrows a toolbox (module) of ready-made tools |
-| **`random.randint(a, b)`** | a whole number from a to b — **both ends included** |
-| **`random.choice([...])`** | picks ONE item from a collection in square brackets |
-| **equally likely** | every outcome has the same chance |
-| **fair** | no player (and no outcome) has an edge |
+| **`randi([a b])`** | a whole number from a to b — **both ends included** |
+| **`randi(n)`** | shortcut for `randi([1 n])` — a number from 1 up to n |
+| **mapping** | the if/elseif chain that gives each number a meaning (1 means rock…) |
+| **`strcmp(a, b)`** | the word-matcher — "same word?" → 1 (yes) or 0 (no) |
+| **equally likely / fair** | every outcome has the same chance — no player has an edge |
 
 ## 1 · Prove the game is fair 🪨📄✂️
 
@@ -29,12 +29,13 @@ Count your letters: W: ____ L: ____ T: ____ → Is the game fair? **YES / NO**
 
 ## 2 · Which spinner is fair? 🎡
 
-Three computer "spinners." **Circle the fair one** (all outcomes equally likely):
+Three computer "spinners" — each rolls a die, then maps the number to a color or
+word. **Circle the fair one** (all outcomes equally likely):
 
-```python
-A)  random.choice(["red", "red", "blue"])
-B)  random.choice(["red", "blue", "green"])
-C)  random.choice(["win", "win", "win", "lose"])
+```
+A)  r = randi(3)     1 means red    2 means red    3 means blue
+B)  r = randi(3)     1 means red    2 means blue   3 means green
+C)  r = randi(4)     1 means win    2 means win    3 means win    4 means lose
 ```
 
 In spinner A, the chance of red is ____ out of ____.
@@ -42,7 +43,7 @@ In spinner C, the chance of lose is ____ out of ____.
 
 ## 3 · What's possible? 🎲
 
-Circle **every** number that `random.randint(3, 7)` could give:
+Circle **every** number that `randi([3 7])` could give:
 
 > 0 1 2 3 4 5 6 7 8 9
 
@@ -50,10 +51,11 @@ Circle **every** number that `random.randint(3, 7)` could give:
 
 ## 🧠 Brain teaser (optional — take it home)
 
-A sneaky computer plays rock-paper-scissors, but it picks its throw with:
+A sneaky computer plays rock-paper-scissors, but it picks its throw with this
+rigged mapping:
 
-```python
-random.choice(["rock", "rock", "paper"])
+```
+r = randi(3)     1 means rock    2 means rock    3 means paper
 ```
 
 You get to pick ONE throw and stick with it. **Which throw gives you the best
