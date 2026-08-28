@@ -1,7 +1,7 @@
 % ==============================================================================
 %   mystery_machine.m  ·  WEEK 10 CHALLENGE  —  ⚠ TEACHER'S EYES ONLY ⚠
 %
-%   Do NOT open this file on the smartboard! The whole game (challenge.m,
+%   Do NOT open this file on the smartboard! The whole game (step7_class_challenge.m,
 %   Challenge 2) is that the class sees only the inputs and outputs and
 %   must reverse-engineer the rule hiding in here.
 %

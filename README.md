@@ -23,8 +23,9 @@ so class time does double duty.
 2. Read [`TEACHER-GUIDE.md`](TEACHER-GUIDE.md) once — it explains how each file type is
    used in class and how to set up the MATLAB desktop for a smartboard.
 3. Skim [`CURRICULUM.md`](CURRICULUM.md) for the full 16-week map.
-4. Before each class, open that week's folder under `lessons/` and read its `README.md`
-   (the lesson plan). Print `handout.pdf` for the class. That's it.
+4. Before each class, open that week's folder under `lessons/` and read
+   `step1_teacher_lesson_plan.md`. Print `step6_class_handout.pdf` for the class.
+   That's it.
 
 To run any demo in class: open the file in the MATLAB Editor, then run it section by
 section (`Ctrl+Enter`) or all at once (`F5`). Everything also runs in free
@@ -53,16 +54,22 @@ section (`Ctrl+Enter`) or all at once (`F5`). Everything also runs in free
 
 ## What's in each lesson folder
 
-| File | What it is | How it's used |
-|------|-----------|---------------|
-| `README.md` | Teacher lesson plan | Read before class — objectives, vocabulary, math tie-in, minute-by-minute timing |
-| `lesson_demo.m` | "Code as slides" | Read top-to-bottom on the smartboard, running section by section (`Ctrl+Enter`) |
-| `fill_in_the_blank.m` | Participation file | Blanks shown as `____` — kids call out answers, you type and run |
-| `predict_the_output.m` | Voting game | Class votes A/B/C on what the code prints, then you run it to reveal |
-| `challenge.m` | Stretch material | For fast classes, curious kids, or weeks with extra time |
-| `handout.md` | Printable 1-pager (source) | Vocabulary, paper exercises, optional take-home brain teaser |
-| `handout.pdf` | Print-ready version | The same handout typeset as a one-page PDF — just print it |
-| `answer-key.md` | Teacher answers | Filled-in blanks, predict-the-output answers with explanations, handout key |
+Files are named by audience (**teacher** vs **class**) and numbered in the
+approximate order they're used during a class:
+
+| File | Audience | What it is | How it's used |
+|------|----------|-----------|---------------|
+| `step1_teacher_lesson_plan.md` | teacher | Lesson plan | Read before class — objectives, vocabulary, math tie-in, minute-by-minute timing |
+| `step2_teacher_answer_key.md` | teacher | Answer key | Keep open during class — filled-in blanks, predict answers with explanations, handout key |
+| `step3_class_demo.m` | class | "Code as slides" | Read top-to-bottom on the smartboard, running section by section (`Ctrl+Enter`) |
+| `step4_class_fill_in_the_blank.m` | class | Participation file | Blanks shown as `____` — kids call out answers, you type and run |
+| `step5_class_predict_the_output.m` | class | Voting game | Class votes A/B/C on what the code prints, then you run it to reveal |
+| `step6_class_handout.pdf` | class | Printable 1-pager | Print one per student (`step6_class_handout.md` is the editable source) |
+| `step7_class_challenge.m` | class | Stretch material | For fast classes, curious kids, or weeks with extra time |
+
+Unnumbered `.m` files in a folder are support machines the numbered files call —
+MATLAB requires a function's filename to match its name, so they keep their own
+names and aren't opened directly in class.
 
 Some weeks add extra `.m` files: function files for week 10+ ("each machine lives in
 its own file"), the mini **turtle toolbox** in weeks 11–12, and the room functions of
