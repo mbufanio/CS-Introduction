@@ -41,24 +41,32 @@ command window and a workspace/variables view).
 
 ## 2. The rhythm of a lesson
 
-Every lesson's `README.md` has a minute-by-minute plan, but they all follow the same
+Every lesson's `step1_teacher_lesson_plan.md` has a minute-by-minute plan, but they all follow the same
 shape:
 
 | Minutes | Segment | What's happening |
 |---------|---------|------------------|
 | 0–5 | **Hook** | A question, puzzle, or "watch this" moment. No code knowledge needed. |
-| 5–20 | **Demo** (`lesson_demo.m`) | You walk through the file top-to-bottom, running each `%%` section as you go. Ask the questions written in the comments. |
-| 20–30 | **Fill-in-the-blank** (`fill_in_the_blank.m`) | The class completes the code out loud; you type their answers and run. |
-| 30–38 | **Predict the output** (`predict_the_output.m`) | Class votes A/B/C, you run to reveal. Keep score if they love competition. |
+| 5–20 | **Demo** (`step3_class_demo.m`) | You walk through the file top-to-bottom, running each `%%` section as you go. Ask the questions written in the comments. |
+| 20–30 | **Fill-in-the-blank** (`step4_class_fill_in_the_blank.m`) | The class completes the code out loud; you type their answers and run. |
+| 30–38 | **Predict the output** (`step5_class_predict_the_output.m`) | Class votes A/B/C, you run to reveal. Keep score if they love competition. |
 | 38–43 | **Handout** | Kids do the paper exercises; you circulate. |
 | 43–45 | **Wrap-up** | One-sentence summary + tease next week. |
 
 If you fall behind, cut from the *end* (handout time shrinks first — it can go home).
-If you're ahead, open `challenge.m`.
+If you're ahead, open `step7_class_challenge.m`.
 
 ## 3. How each file type works in class
 
-### `lesson_demo.m` — the code IS the slides
+Every file in a lesson folder is named by **audience** (`teacher` = for your eyes,
+`class` = shown on the smartboard or handed out) and numbered `step1`–`step7` in the
+approximate order it's used. The numbers sit after a letter because MATLAB can't run a
+script whose filename starts with a digit. Unnumbered `.m` files (the turtle toolbox,
+`cheer.m`, the adventure rooms…) are support machines the numbered files call —
+MATLAB requires a function's filename to match its name, so they keep their own names
+and are never opened in order.
+
+### `step3_class_demo.m` — the code IS the slides
 
 Demo files are written to be **read aloud, top to bottom, on the smartboard**. Comments
 (the `%` lines) carry the narration: definitions, questions to ask the class, and
@@ -66,7 +74,7 @@ Demo files are written to be **read aloud, top to bottom, on the smartboard**. C
 MATLAB treats each as a runnable cell: click in it, `Ctrl+Enter`, and only that section
 runs. Walk the file one section at a time, predicting before every run.
 
-### `fill_in_the_blank.m` — kids write the code, you type it
+### `step4_class_fill_in_the_blank.m` — kids write the code, you type it
 
 Blanks appear as `____`. The file's comments say what each blank needs. Workflow:
 
@@ -74,14 +82,14 @@ Blanks appear as `____`. The file's comments say what each blank needs. Workflow
 2. Kids raise hands / call out what goes in the blank.
 3. Type their answer **even if it's wrong**, and run it. Wrong answers that crash are
    *gold* — read the error message together and let the class debug it.
-4. The completed version lives in `answer-key.md` if you need it.
+4. The completed version lives in `step2_teacher_answer_key.md` if you need it.
 
 > The blanks are written as `____` on purpose: it's a legal MATLAB name, so the file
 > stays loadable, but *running* an unfilled blank stops with
 > `Unrecognized function or variable '____'` — which is itself a teachable moment
 > ("MATLAB doesn't know what `____` is… so let's tell it").
 
-### `predict_the_output.m` — the voting game
+### `step5_class_predict_the_output.m` — the voting game
 
 Each round shows a few lines of code with A/B/C choices in the comments. Run the whole
 file (`F5`): it pauses before each reveal and waits for you to press Enter in the
@@ -92,7 +100,7 @@ Command Window. So the loop is:
 2. Click in the Command Window, press Enter. The answer prints.
 3. Ask *someone who got it right* to explain why.
 
-### `challenge.m` — the pressure valve
+### `step7_class_challenge.m` — the pressure valve
 
 Runnable stretch content: a harder version of the day's idea, a wow-demo, or a sneak
 peek of a future week. Use it when a class is fast, a kid asks "but could it do X?", or
@@ -107,9 +115,9 @@ leans into it: "each machine lives in its own file." Weeks 11–12 ship a tiny
 week 11 the class can read every line of it. Weeks 15–16 add the class game's room
 functions. Keep the Current Folder set to the week's folder so MATLAB finds them.
 
-### `handout.md` / `handout.pdf` — the only paper in the room
+### `step6_class_handout.md` / `step6_class_handout.pdf` — the only paper in the room
 
-One page. Print `handout.pdf`, one per student (`handout.md` is the editable source if
+One page. Print `step6_class_handout.pdf`, one per student (`step6_class_handout.md` is the editable source if
 you customize — re-print via any markdown preview). It has:
 
 - The day's vocabulary
@@ -117,7 +125,7 @@ you customize — re-print via any markdown preview). It has:
 - An **optional brain teaser** to take home — never collected, never graded, but kids
   who bite get a shout-out next week.
 
-### `answer-key.md` — yours, not theirs
+### `step2_teacher_answer_key.md` — yours, not theirs
 
 Completed fill-in-the-blank code, predict-the-output answers *with explanations*, and
 handout answers.
