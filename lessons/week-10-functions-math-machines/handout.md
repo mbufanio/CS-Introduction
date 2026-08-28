@@ -2,25 +2,28 @@
 
 **Name: ______________________ Date: __________**
 
-> `def` **builds** the machine · calling **runs** it · `return` **hands the answer back**. Math's f(3) and Python's f(3) are the same thing.
+> `@` **builds** a machine · calling **runs** it · the **output slot** hands the answer back. Math's f(3) and MATLAB's f(3) are the same thing.
 
 ## Today's words
 
 | Word | What it means |
 |------|---------------|
 | **function** | a machine: input in the slot, output out the chute |
-| **`def`** | builds a machine (building it doesn't run it!) |
-| **parameter** | the input slot's name — the x in `def double(x):` |
-| **call** | using the machine: `double(5)` — parentheses press the button |
-| **`return`** | hands the answer back so the program can keep using it |
+| **`@`** | builds a machine: `f = @(x) 2*x + 1` (building it doesn't run it!) |
+| **function file** | a named machine's own `.m` file, named after itself |
+| **parameter** | the input slot's name — the x in `@(x)` or `double_it(x)` |
+| **call** | using the machine: `double_it(5)` — parentheses press the button |
+| **output slot** | the `out =` in a function line — it hands the answer back |
 
 ## 1 · Be the machine 🤖
 
 Fill each table by running the machine in your head.
 
-```python
-def triple(x):                    def machine(x):
-    return x * 3                      return x * x - 1
+```matlab
+% triple.m                        % machine.m
+function out = triple(x)          function out = machine(x)
+    out = x * 3;                      out = x * x - 1;
+end                               end
 ```
 
 | in (x) | `triple(x)` | | in (x) | `machine(x)` |
@@ -34,24 +37,27 @@ def triple(x):                    def machine(x):
 
 Draw a line from each call to what it prints. One output is left over!
 
-```python
-def double(x):                    def gap(a, b):
-    return x * 2                      return a - b
+```matlab
+% double_it.m                     % gap.m
+function out = double_it(x)       function out = gap(a, b)
+    out = x * 2;                      out = a - b;
+end                               end
 ```
 
 | Call | | Output |
 |---|---|---|
-| `print(double(6))` | | `-5` |
-| `print(gap(9, 4))` | | `8` |
-| `print(gap(4, 9))` | | `12` |
-| `print(double(double(2)))` | | `5` |
+| `disp(double_it(6))` | | `-5` |
+| `disp(gap(9, 4))` | | `8` |
+| `disp(gap(4, 9))` | | `12` |
+| `disp(double_it(double_it(2)))` | | `5` |
 | | | `24` |
 
 ## 3 · Build a machine on paper 🔧
 
-Write a complete `def` for a machine named `add_ten` that takes one number
-and hands back that number plus 10. (Two lines — don't forget the colon,
-the indent, and the keyword that hands the answer back.)
+Write a complete function **file** for a machine named `add_ten` that takes
+one number and hands back that number plus 10. (Three lines — don't forget
+the output slot on the function line, and the `end`. Bonus point: what must
+the file be named?)
 
 <br><br><br>
 
@@ -59,12 +65,12 @@ the indent, and the keyword that hands the answer back.)
 
 ## 🧠 Brain teaser (optional — take it home)
 
-Two machines: &nbsp; `def double(x): return x * 2` &nbsp; and &nbsp; `def add_three(x): return x + 3`
+Two machines: &nbsp; `double_it = @(x) x * 2` &nbsp; and &nbsp; `add_three = @(x) x + 3`
 
 Work **inside out**, like nested parentheses:
 
-1. `double(add_three(2))` = ______
-2. `add_three(double(2))` = ______
+1. `double_it(add_three(2))` = ______
+2. `add_three(double_it(2))` = ______
 3. Same machines, same input, both orders — same answer? Circle: **YES / NO**
 
 In math language that's f(g(2)) vs g(f(2)). Bring your answers next week

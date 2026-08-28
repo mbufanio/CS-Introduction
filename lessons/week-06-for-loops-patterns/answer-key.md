@@ -1,66 +1,78 @@
 # Week 6 — Answer Key (teacher only)
 
-## `2-fill-in-the-blank.py` — completed code
+## `fill_in_the_blank.m` — completed code
 
-```python
-# TASK 1 — range(12) IS 12 laps (values 0–11, but twelve of them)
-for i in range(12):
-    print("CLAP 👏")
+```matlab
+% TASK 1 — 1:12 is twelve laps: 1 through 12, last one included
+for i = 1:12
+    disp('CLAP!')
+end
 
-# TASK 2 — start at 1; the wall must be one PAST the last number we want
-for number in range(1, 11):
-    print(number)
+% TASK 2 — start at 1, END at 10 — the end is included, no wall to dodge
+for number = 1:10
+    fprintf('%d\n', number)
+end
 
-# TASK 3 — odd to odd is a jump of 2
-for n in range(1, 20, 2):
-    print(n)
+% TASK 3 — odd to odd is a difference of 2, and it goes in the MIDDLE
+for n = 1:2:19
+    fprintf('%d\n', n)
+end
 
-# TASK 4 — backward needs a negative step
-for t in range(10, 0, -1):
-    print(t, "...")
-print("LUNCH TIME 🍕")
+% TASK 4 — backward needs a negative step
+for t = 10:-1:1
+    fprintf('%d ...\n', t)
+end
+disp('LUNCH TIME!')
 
-# TASK 5 — snowball starts empty (0); each lap rolls in n
-total = 0
-for n in range(1, 21):
-    total = total + n
-print("1 + 2 + ... + 20 =", total)          # → 210 (Gauss: 20 × 21 ÷ 2)
+% TASK 5 — snowball starts empty (0); each lap rolls in n
+total = 0;
+for n = 1:20
+    total = total + n;
+end
+fprintf('1 + 2 + ... + 20 = %d\n', total)          % → 210 (Gauss: 20 × 21 ÷ 2)
 
-# TASK 6 — row already counts 1, 2, 3, ... — multiply the star by it
-for row in range(1, 8):
-    print("*" * row)
+% TASK 6 — row already counts 1, 2, 3, ... — hand it to the repeater
+for row = 1:7
+    disp(repmat('*', 1, row))
+end
 
-# TASK 7 — typed live; the class supplies the * operator
-table = 7                     # or whatever the class picked
-for i in range(1, 11):
-    print(table, "x", i, "=", table * i)
+% TASK 7 — typed live; the class supplies the * operator
+table = 7;                    % or whatever the class picked
+for i = 1:10
+    fprintf('%d x %d = %d\n', table, i, table * i)
+end
 ```
 
 Wrong answers worth typing anyway: Task 1 `13` → count the claps together, there
-are 13 — then fix; Task 4 `1` or `2` → the loop prints *nothing* (range can't
-climb from 10 up to 0), and zero output is itself a clue; Task 5 first blank `1`
-→ total comes out 211, off by exactly one — debugging gold.
+are 13 — then fix (no sneaky off-by-one here: `1:12` is 12); Task 4 `1` or `2` →
+the loop prints *nothing* (the sequence can't climb from 10 up to 1, so it's
+empty), and zero output is itself a clue; Task 5 first blank `1` → total comes
+out 211, off by exactly one — debugging gold.
 
-## `3-predict-the-output.py` — answers
+## `predict_the_output.m` — answers
 
 | Round | Answer | Why |
 |-------|--------|-----|
-| 1 | **B** — 0 1 2 | `range(3)` starts at 0 and stops before 3. Three laps, but the *values* are 0, 1, 2. |
-| 2 | **A** — 1 2 3 | The stop is a wall, not a step. To print 4 you'd need `range(1, 5)`. |
-| 3 | **B** — 4 beeps | Values 2, 4, 6, 8 — then 10 hits the wall. Count laps, not the stop number. |
-| 4 | **A** — just `6` | The `print` is *outside* the loop (not indented), so only the finished snowball shows: 1+2+3 = 6. |
-| 5 | **A** — `***` | Multiplying text makes copies, glued: three stars, no spaces, no `*3`. |
-| Final | **B** — 1, 3, 6 | Same code, but the `print` moved *inside* — a progress report every lap. Indentation decides WHEN, not just what. Scroll back to round 4 and compare. |
+| 1 | **B** — 1 2 3 4 5 | The colon includes its last number. `1:5` is five numbers, and 5 is one of them. MATLAB counts like humans. |
+| 2 | **A** — 5 beeps | Values 2, 4, 6, 8, 10 — the 10 lands exactly on a jump, so it's included. Five laps. |
+| 3 | **A** — 10 down to 1 | A negative step walks downhill, and the last term (1) is still included. Never 0 — that's not in the sequence. |
+| 4 | **C** — only `loop finished` | `5:1:1` tries to climb UP from 5 to 1 — impossible, so the sequence is EMPTY and the loop runs ZERO times. No error, just silence. |
+| 5 | **A** — just `6` | The `fprintf` is *after* the `end` — outside the loop — so only the finished snowball shows: 1+2+3 = 6. |
+| Final | **A** — `***` | The repeater makes copies, glued: three stars, no spaces, no `*3`. |
+
+*(After round 5's reveal, ask: what if the `fprintf` moved above the `end`? A
+progress report every lap: 1, 3, 6. The `end` decides WHEN, not just what.)*
 
 ## Handout answers
 
 **1 · Match the sequence**
 
-- 0, 1, 2, 3, 4 → `range(5)`
-- 2, 4, 6, 8, 10 → `range(2, 11, 2)`
-- 5, 10, 15, 20 → `range(5, 21, 5)`
-- 10, 9, 8, … 1 → `range(10, 0, -1)`
-- The fake: **`range(1, 5)`** — that's 1, 2, 3, 4, which matches nothing listed.
+- 1, 2, 3, 4, 5 → `1:5`
+- 2, 4, 6, 8, 10 → `2:2:10`
+- 5, 10, 15, 20 → `5:5:20`
+- 10, 9, 8, … 1 → `10:-1:1`
+- The fake: **`5:1:1`** — it tries to climb up from 5 to 1, so it's an *empty*
+  sequence: a loop over it runs zero times.
 
 **2 · Trace the snowball**
 
@@ -71,7 +83,7 @@ climb from 10 up to 0), and zero output is itself a clue; Task 5 first blank `1`
 | 3 | 3 | 6 |
 | 4 | 4 | 10 |
 
-The screen shows: **10** (one line only — the `print` is outside the loop).
+The screen shows: **10** (one line only — the `disp` is after the `end`).
 
 **3 · What prints?**
 
@@ -81,12 +93,12 @@ The screen shows: **10** (one line only — the `print` is outside the loop).
 ***
 ```
 
-(Three rows — the wall at 4 is excluded.)
+(Three rows — `1:3` deals 1, 2, 3, and each row gets that many stars.)
 
 ## 🧠 Brain teaser guidance
 
 1 + 2 + … + 1000: pair 1+1000, 2+999, … → **500 pairs of 1001 = 500500**.
-The checking loop needs `range(1, 1001)` — `range(1000)` deals 0…999, which
-*skips 1000 and sneaks in a useless 0*, landing on 499500 (off by exactly 1000 —
-ask them why by exactly that much, it's a lovely follow-up). Shout-out anyone who
-wrote both the pair count *and* the wall reasoning.
+The checking loop needs `1:1000` — `0:999` also deals exactly 1000 numbers, but
+it *skips 1000 and sneaks in a useless 0*, landing on 499500 (off by exactly
+1000 — ask them why by exactly that much, it's a lovely follow-up). Shout-out
+anyone who wrote both the pair count *and* the sneaky-zero reasoning.

@@ -6,25 +6,24 @@
 
 By the end of class, students can:
 
-1. Color a drawing with `pencolor()`, `bgcolor()`, and `pensize()`, and unleash
-   `speed(0)`
+1. Color a drawing with `pencolor()` — one-letter pens or a mixed `[r g b]` — and
+   unleash `turtle_speed(0)`
 2. Explain how `forward(i)` inside a loop makes a **spiral** (sides 1, 2, 3, ... —
    an arithmetic sequence drawn in space)
 3. Explain the **spirograph pattern**: draw a shape, turn a little, repeat — and why
    36 turns of 10° close the pattern perfectly (36 × 10 = 360)
-4. Read `colors[i % 6]` as "cycle through the color list" — week 9's `%` wraparound,
-   now painting
+4. Read `colors(mod(i, 6) + 1)` as "cycle through the color string" — week 9's
+   `mod()` wraparound plus week 8's indexing, now painting
 
 ## Vocabulary
 
 | Word | Kid-friendly definition |
 |------|------------------------|
-| **`pencolor()` / `bgcolor()`** | set the pen's ink color / the background color |
-| **`pensize()`** | how thick the pen's line is |
-| **`speed(0)`** | the secret setting: NO speed limit — the turtle teleports |
+| **`pencolor()`** | set the pen's ink: `'r' 'g' 'b' 'c' 'm' 'y' 'k'`, or mix your own `[1 0.5 0]` |
+| **`turtle_speed(0)`** | zero seconds of pause per step — the turtle teleports |
 | **spiral** | a path that grows as it turns — `forward(i)` makes each side longer |
 | **spirograph** | draw a shape, turn a little, repeat — until the turns total 360° |
-| **`colors[i % 6]`** | pick from the color list, wrapping around — % cycles 0,1,2,3,4,5,0,1,... |
+| **`colors(mod(i, 6) + 1)`** | pick from the color string, wrapping around — mod cycles the six pens forever (the + 1 keeps it on MATLAB's 1-to-6 shelf) |
 
 ## Math tie-in
 
@@ -34,9 +33,9 @@ machine: draw a square, rotate 10°, repeat — and it closes into a perfect man
 for other angles (20° → 18, 45° → 8: they're computing 360 ÷ angle, i.e. hunting
 divisors of 360), and the demo's 91° gasp shows what happens when the angle *doesn't*
 divide 360: the pattern "walks around," and keeps going until the math catches up.
-Meanwhile `colors[i % 6]` recycles week 9's modular arithmetic — the same wraparound
-that turned Z into A now cycles red → orange → ... → purple → red. Rotation, divisors,
-and mod, all visible on one screen.
+Meanwhile `colors(mod(i, 6) + 1)` recycles week 9's modular arithmetic — the same
+wraparound that turned Z into A now cycles red → green → ... → yellow → red. Rotation,
+divisors, and mod, all visible on one screen.
 
 ## Before class
 
@@ -44,9 +43,10 @@ and mod, all visible on one screen.
       spirograph** section kids fill in; collect or photograph the best ones,
       because **next week's warm-up is running student designs**
 - [ ] Have `answer-key.md` open or printed for you
-- [ ] Dry-run `1-demo.py` — especially Section 0, the masterpiece. It's your hook;
-      it should run within 15 seconds of class starting
-- [ ] Same screen setup as week 11: VS Code and the turtle window side by side
+- [ ] Dry-run `lesson_demo.m` — especially Section 0, the masterpiece. It's your
+      hook; it should run within 15 seconds of class starting
+- [ ] Same screen setup as week 11: MATLAB and the figure window side by side, and
+      the Current Folder set to THIS folder (the nine turtle files live here too)
 
 ## Lesson plan — 45 minutes
 
@@ -59,39 +59,45 @@ Shout-outs for rectangle/initial brain teasers — if one is good, type and run 
 
 ### 0:02–0:06 · Hook: run the masterpiece FIRST
 
-No warm-up, no theory. Open `1-demo.py`, run it, press Enter at Section 0, and let
-the class watch 30 seconds of art bloom — a rainbow spirograph unfolding on a black
-screen. Then the promise:
+No warm-up, no theory. Open `lesson_demo.m`, run it (F5), press Enter at Section 0,
+and let the class watch 30 seconds of art bloom — a rainbow spirograph unfolding on
+the canvas. Then the promise:
 
 > *"Everything you just saw is made of things you already know: a square, a for loop,
-> the % sign from cipher week. By the end of class you'll know exactly how it works —
+> the mod() from cipher week. By the end of class you'll know exactly how it works —
 > and you'll design your own."*
 
-### 0:06–0:22 · Demo: `1-demo.py` (continue from Section 1)
+### 0:06–0:22 · Demo: `lesson_demo.m` (continue from Section 1)
 
 Keep pressing Enter through the sections; predict before every run. Beats to hit:
 
-- Paint: `pencolor`, `pensize`, then `bgcolor("black")` — the same square, suddenly neon
-- `speed(0)` — *"we remove the turtle's speed limit"* (the class should gasp)
-- **THE SPIRAL**: `forward(i)` — each side one step longer: 0, 1, 2, 3, ... —
+- Paint: `pencolor('r')` — the same square, suddenly red. Then the art-class secret:
+  `pencolor([1 0.5 0])` mixes a custom orange from the `[r g b]` sliders
+- `turtle_speed(0)` — *"we remove the turtle's speed limit"* (the class should gasp:
+  zero seconds of pause per step — teleportation)
+- **THE SPIRAL**: `forward(i)` — each side one step longer: 1, 2, 3, ... —
   *"that's an arithmetic sequence, drawn in space"*
 - The 91° twist: change ONE degree, square spiral → whirlpool. Predict first!
 - **THE SPIROGRAPH**: square + turn 10° + repeat 36. ⭐ Why 36? 36 × 10 = 360 —
   the rotations tile a full circle, so the pattern closes perfectly
-- `colors[i % 6]` — count around the list out loud: i = 0,1,2,...,6 → *"the % from
-  cipher week is now painting"*
+- `colors(mod(i, 6) + 1)` — walk the cycle out loud with the Command Window table:
+  *"the mod() from cipher week is now painting"* (and the + 1 is week 8's fault:
+  MATLAB counts from 1). Point at `colors` in the Workspace — a 1×6 char, six pens
+  in one string
 - **CLASS DESIGN MOMENT** (Section 7): the class votes on the `TWEAK THESE` dials —
-  shape sides, tilt angle, size — you edit 3 lines and re-run. Twice if time allows.
+  `SIDES`, `TILT`, `SIZE`, `COLORS` — you edit 4 lines and re-run just that section
+  (Ctrl+Enter). Twice if time allows.
 
-### 0:22–0:31 · Class writes code: `2-fill-in-the-blank.py`
+### 0:22–0:31 · Class writes code: `fill_in_the_blank.m`
 
 Kids call out what goes in each blank; you type and run after every task. Task 6 has
 no blank — you type the color-cycling line live while the class supplies the
-wraparound operator. Completed code is in `answer-key.md`.
+wraparound function (`mod`) and, from the week 8 veterans, the reason for the `+ 1`.
+Completed code is in `answer-key.md`.
 
-### 0:31–0:38 · Voting game: `3-predict-the-output.py`
+### 0:31–0:38 · Voting game: `predict_the_output.m`
 
-Terminal-only, no turtle window: number rounds run for real, shape rounds reveal a
+Command-Window-only, no turtle: number rounds run for real, shape rounds reveal a
 text sketch. The final round replays the 91° trick — see who was paying attention.
 
 ### 0:38–0:43 · Handout
@@ -104,27 +110,34 @@ tilt angle, and colors, then *sketch their prediction*. Tell them explicitly:
 ### 0:43–0:45 · Wrap-up
 
 *"One shape, rotated until the turns fill 360 degrees — that's a spirograph. The
-loop draws, the angle rotates, and % paints."* Tease week 13: *"Next week the
+loop draws, the angle rotates, and mod() paints."* Tease week 13: *"Next week the
 computer rolls a die a MILLION times before the bell rings — and we find out whether
 my real die is broken."*
 
 ## If you have extra time
 
-Open `4-challenge.py`: the circle-based rainbow spirograph (also a great re-hook),
-the drunk turtle (random right-angle walk — modern art every run), a star-burst
-generator with random colors, and the four-preset **art contest** file — change one
-variable, `PRESET`, and the class votes on the best result.
+Open `challenge.m`: the circle-edition rainbow spirograph (each "circle" is a 20-gon
+in a trench coat — also a great re-hook), the drunk turtle (random right-angle walk —
+modern art every run), a star-burst generator with random colors, and the
+four-preset **art contest** — change one variable, `PRESET`, and the class votes on
+the best result.
 
 ## Common pitfalls
 
-- **Misspelled color names crash.** `"purpel"` → an error about a bad color string.
-  Applause moment, week-1 style: read it, fix it, re-run.
-- **A turn angle that doesn't divide 360.** Not a bug — the pattern just needs more
+- **Made-up color letters crash — but later.** `pencolor('p')` stores the bad color
+  quietly; the error appears the moment the turtle next *draws* (an invalid-color
+  complaint from deep in the plotting machinery). Applause moment, week-1 style:
+  read it, fix it (`'m'` is the purple-ish one — magenta), re-run.
+- **A tilt angle that doesn't divide 360.** Not a bug — the pattern just needs more
   repeats to close. If a class design picks 25°, add repeats and enjoy the ride
   ("the math catches up eventually").
-- **speed(0) impatience in reverse.** After seeing speed 0, kids won't tolerate
-  speed 3 again. Fine — but keep ONE slow run early so they *see* the square being
-  drawn before it becomes a blur.
+- **Speed-0 impatience in reverse.** After seeing `turtle_speed(0)`, kids won't
+  tolerate 0.05 again. Fine — but keep ONE slow run early so they *see* the square
+  being drawn before it becomes a blur.
+- **Big shapes overflow the canvas.** The canvas ends at ±250, and a hexagon with
+  SIZE 130 reaches past it — the drawing just gets cut off at the edge, no error.
+  Shrink SIZE (or open `turtle_start.m` and widen the `axis` line — a great
+  "we can read the toolbox" flex).
 - **Kids shouting color requests mid-draw.** Channel it into the design moment:
   votes only, one re-run per design.
 - **The masterpiece leaks its secrets early.** If someone asks "how does it work?"

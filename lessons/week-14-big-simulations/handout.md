@@ -10,7 +10,7 @@
 | Word | What it means |
 |------|---------------|
 | **Monte Carlo method** | answering a hard question with tons of random tries |
-| **`random.uniform(a, b)`** | a random *decimal* between a and b — any decimal at all |
+| **`rand`** | a random *decimal* between 0 and 1 — any decimal at all |
 | **trial** | one single random try (one raindrop, one game) |
 | **expected value** | your average result *per game*: each outcome × its probability, added up |
 

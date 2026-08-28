@@ -1,86 +1,101 @@
 # Week 12 — Answer Key (teacher only)
 
-## `2-fill-in-the-blank.py` — completed code
+## `fill_in_the_blank.m` — completed code
 
-```python
-import turtle
+```matlab
+% TASK 1 — pencolor picks the ink (any pen letter the class votes works:
+% 'r' 'g' 'b' 'c' 'm' 'y' 'k')
+turtle_start
+turtle_speed(0.05)
+pencolor('r')
+forward(100)
 
-turtle.bgcolor("black")
-turtle.pensize(2)
+% TASK 2 — 0 means zero seconds of pause: the teleport setting
+% (1 is the trap: one whole SECOND per step — the slowest turtle alive)
+turtle_speed(0)
+backward(100)
 
-# TASK 1 — pencolor picks the ink (any real color name works)
-turtle.pencolor("red")
+% TASK 3 — forward(i): the loop variable grows every lap → a spiral
+turtle_start
+turtle_speed(0)
+pencolor('b')
+for i = 1:100
+    forward(i)
+    right(90)
+end
 
-# TASK 2 — speed 0 = NO speed limit (10 is the trap: fast, but limited)
-turtle.speed(0)
+% TASK 4 — 360 / 12 = 30 repeats to close the pattern
+turtle_start
+turtle_speed(0)
+pencolor('k')
+for i = 1:30
+    for side = 1:6
+        forward(90)
+        right(60)
+    end
+    right(12)
+end
 
-# TASK 3 — forward(i): the loop variable grows every lap → a spiral
-for i in range(100):
-    turtle.forward(i)
-    turtle.right(90)
+% TASK 5 — mod(i, 6): six pens, so the count wraps at 6
+colors = 'rgbcmy';
 
-# TASK 4 — 360 / 12 = 30 repeats to close the pattern
-turtle.reset()
-turtle.speed(0)
-turtle.pencolor("white")
-turtle.pensize(2)
-for i in range(30):
-    for side in range(6):
-        turtle.forward(90)
-        turtle.right(60)
-    turtle.right(12)
+turtle_start
+turtle_speed(0)
+for i = 1:36
+    pencolor(colors(mod(i, 6) + 1))
+    for side = 1:4
+        forward(120)
+        right(90)
+    end
+    right(10)
+end
 
-# TASK 5 — % 6: six colors, so the count wraps at 6
-colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+% TASK 6 — type-it-live: the class supplies mod, the wraparound function
+% (and the + 1 is because MATLAB counts from 1 — mod gives 0–5, the
+%  string's shelf is 1–6)
+turtle_start
+turtle_speed(0)
+pencolor('k')
+for i = 1:150
+    pencolor(colors(mod(i, 6) + 1))    % ← the line you type live
+    forward(i)
+    right(91)
+end
 
-turtle.reset()
-turtle.speed(0)
-turtle.pensize(2)
-for i in range(36):
-    turtle.pencolor(colors[i % 6])
-    for side in range(4):
-        turtle.forward(120)
-        turtle.right(90)
-    turtle.right(10)
+% TASK 7 — any class picks work; e.g. pentagons tilting 15:
+turtle_start
+turtle_speed(0)
 
-# TASK 6 — type-it-live: the class supplies %, the wraparound operator
-turtle.reset()
-turtle.speed(0)
-turtle.pencolor("white")
-turtle.pensize(2)
-for i in range(150):
-    turtle.pencolor(colors[i % 6])    # ← the line you type live
-    turtle.forward(i)
-    turtle.right(91)
+sides = 5;
+tilt = 15;
 
-# TASK 7 — any class picks work; e.g. pentagons tilting 15:
-turtle.reset()
-turtle.speed(0)
-turtle.pensize(2)
+for i = 1:72
+    pencolor(colors(mod(i, 6) + 1))
+    for side = 1:sides
+        forward(90)
+        right(360 / sides)
+    end
+    right(tilt)
+end
 
-sides = 5
-tilt = 15
-
-for i in range(72):
-    turtle.pencolor(colors[i % 6])
-    for side in range(sides):
-        turtle.forward(110)
-        turtle.right(360 / sides)
-    turtle.right(tilt)
-
-print("Gallery opening: one original artwork, by this class.")
-
-turtle.done()
+fprintf('Gallery opening: one original artwork, by this class.\n')
 ```
 
-## `3-predict-the-output.py` — answers
+*(Live-typing notes: an unfilled blank stops with `Unrecognized function or
+variable '____'.` — you just haven't gotten there yet. A made-up color like
+`pencolor('p')` is sneakier: `pencolor` stores it happily, and the error only
+fires at the next `forward`, from inside the plotting machinery — a nice "errors
+point at where the computer got stuck, not always where the mistake lives"
+conversation. The purple-ish pen is `'m'`, magenta.)*
+
+## `predict_the_output.m` — answers
 
 | Round | Answer | Why |
 |-------|--------|-----|
 | 1 | **A** — 18 | Repeats to close = 360 ÷ tilt = 360 ÷ 20 = 18. (C is the trap: 36 only works for 10° tilts.) |
-| 2 | **B** — 50 steps | `range(1, 6)` stops *before* 6, so the last i is 5 → 5 × 10 = 50. Sides 10, 20, 30, 40, 50: the arithmetic sequence that makes a spiral. |
-| 3 | **A** — 0 1 2 0 1 2 | `% 3` wraps the count at 3, like a 3-hour clock. This cycle is exactly how a short color list paints a long drawing. |
-| 4 | **B** — gold | 7 % 3 = 1, and positions start at **zero** (week 8!), so `colors[1]` is the *second* color. A is the off-by-one trap. |
+| 2 | **B** — 50 steps | MATLAB's colon is *inclusive*: `1:5` really ends at 5, so the last side is 5 × 10 = 50. Sides 10, 20, 30, 40, 50: the arithmetic sequence that makes a spiral. |
+| 3 | **A** — 1 2 0 1 2 0 | `mod(i, 3)` keeps the remainder, wrapping the count at 3 like a 3-hour clock. This cycle is exactly how a short color string paints a long drawing. |
+| 4 | **B** — g | mod(7, 3) = 1, then + 1 = 2, and MATLAB counts from **one** (week 8!), so `colors(2)` is the *second* pen: green. A is the trap for anyone who dropped the + 1. |
 | 5 | **B** — a five-pointed star | Turning 144 makes the turtle spin 5 × 144 = 720° = **two** full laps before closing — that's what makes points instead of a pentagon (which is one lap: 5 × 72 = 360). |
 | Final | **B** — the whirlpool | Each corner over-rotates by 1°; across 150 corners that's 150° of extra twist spread through the picture. Not an error, not identical — one number changes the whole artwork. |
 
@@ -106,8 +121,9 @@ turtle.done()
 **3 · Design your own spirograph** — no wrong answers; check that
 repeats = 360 ÷ tilt (if the tilt doesn't divide 360, "more repeats until the math
 catches up" is a *great* answer). **Collect these or have kids keep them — running
-2–3 student designs is next week's warm-up.** To run one: open `1-demo.py`
-Section 7, set `SHAPE_SIDES`, `TILT`, and the colors to the student's picks, re-run.
+2–3 student designs is next week's warm-up.** To run one: open `lesson_demo.m`
+Section 7, set `SIDES`, `TILT`, `SIZE`, and `COLORS` to the student's picks, and
+re-run just that section (Ctrl+Enter).
 
 **Brain teaser guidance:** the 24 divisors of 360:
 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60, 72, 90, 120,

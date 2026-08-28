@@ -2,7 +2,7 @@
 
 **Name: ______________________ Date: __________**
 
-> Encode: slide each letter **forward** by the shift. Fall off at Z? Wrap to A — the alphabet is a **26-hour clock**, and `% 26` makes it tick.
+> Encode: slide each letter **forward** by the shift. Fall off at Z? Wrap to A — the alphabet is a **26-hour clock**, and `mod(…, 26)` makes it tick.
 
 ## Today's words
 
@@ -10,7 +10,7 @@
 |------|---------------|
 | **cipher** | a rule for scrambling a message |
 | **shift (the key)** | how far each letter slides — the secret |
-| **wraparound / `% 26`** | past Z, reappear at A — remainder = clock math |
+| **wraparound / `mod(…, 26)`** | past Z, reappear at A — remainder = clock math |
 | **brute force** | crack a code by trying every possible key (all 25 of them) |
 
 ## Your cipher strip ✂️
@@ -39,10 +39,10 @@ Someone sent you **G R J**. Slide each letter *back* 3 places:
 
 Work these like the computer would:
 
-- `(10 + 4) % 12` = ______
-- `(25 + 3) % 26` = ______ → which letter is that? ______
-- `(23 + 5) % 26` = ______
-- `26 % 26` = ______
+- `mod(10 + 4, 12)` = ______
+- `mod(25 + 3, 26)` = ______ → which letter is that? ______
+- `mod(23 + 5, 26)` = ______
+- `mod(26, 26)` = ______
 - Encoding used shift 8. The decode shift (forward!) is `26 − 8` = ______
 
 ---

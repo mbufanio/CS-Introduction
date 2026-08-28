@@ -1,17 +1,18 @@
-# Week 8 — Strings Inside-Out
+# Week 8 — Text Inside-Out
 
 **Name: ______________________ Date: __________**
 
-> Positions start at **0**. Slices stop **before** the end number. And every character is secretly a **number**.
+> The 1st letter is number **1**. Slices include **both** ends. And every character is secretly a **number**.
 
 ## Today's words
 
 | Word | What it means |
 |------|---------------|
-| **index** | a letter's position number — counting starts at 0 |
-| **`len()`** | counts the characters in a string |
-| **slice** | a cut-out piece, like `word[0:3]` — the end index is NOT included |
-| **`ord()` / `chr()`** | `ord("A")` → 65 reveals the secret number; `chr(66)` → B goes backwards |
+| **index** | a letter's position number — the 1st letter is number 1 |
+| **`end`** | means "the last position" — `word(end)` is the last letter |
+| **`length()`** | counts the characters in a string |
+| **slice** | a cut-out piece, like `word(2:4)` — BOTH end numbers are included |
+| **`double()` / `char()`** | `double('A')` → 65 reveals the secret number; `char(66)` → B goes backwards |
 
 ## Mini ASCII table (you'll need this!)
 
@@ -27,18 +28,18 @@
 
 ## 1 · Address every letter 📍
 
-Write the index under each letter of PYTHON, then answer:
+Write the index under each letter of MATLAB, then answer:
 
-`P___  Y___  T___  H___  O___  N___`
+`M___  A___  T___  L___  A___  B___`
 
-- `word[2]` = ______ · `word[-1]` = ______ · `len(word)` = ______ · `word[1:4]` = ______
+- `word(3)` = ______ · `word(end)` = ______ · `length(word)` = ______ · `word(2:4)` = ______
 
 ## 2 · X-ray the alphabet 🔍
 
 Use the table (no computer needed — YOU are the computer):
 
-- `ord("C")` = ______ · `chr(72)` = ______ · `chr(ord("M") + 1)` = ______
-- Lowercase letters sit exactly 32 higher. So `ord("c")` = ______
+- `double('C')` = ______ · `char(72)` = ______ · `char(double('M') + 1)` = ______
+- Lowercase letters sit exactly 32 higher. So `double('c')` = ______
 
 ## 3 · Crack the number message 🕵️
 
