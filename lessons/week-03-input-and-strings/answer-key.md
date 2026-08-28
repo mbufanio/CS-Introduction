@@ -1,57 +1,61 @@
 # Week 3 — Answer Key (teacher only)
 
-## `2-fill-in-the-blank.py` — completed code
+## `fill_in_the_blank.m` — completed code
 
-```python
-# TASK 1 — the asking command is input
-place = input("Where is our field trip going? ")
+```matlab
+% TASK 1 — the asking command is input (the 's' is there because a place is words)
+place = input('Where is our field trip going? ', 's');
 
-# TASK 2 — any legal label the class picks (one word, no quotes), e.g.:
-animals = input("Give me a PLURAL ANIMAL: ")
+% TASK 2 — typed live: any legal label the class picks (one word, no quotes), e.g.:
+animals = input('Give me a PLURAL ANIMAL: ', 's');
 
-# TASK 3 — any prompt the class composes — it must wear quotes:
-adjective = input("Give me an ADJECTIVE, the weirder the better: ")
+% TASK 3 — any prompt the class composes — it must wear quotes:
+adjective = input('Give me an ADJECTIVE, the weirder the better: ', 's');
 
-# TASK 4 — the converter is int (input hands back a string!)
-kids_text = input("How many kids fit on one bus? ")
-kids = int(kids_text)
+% TASK 4 — keep the twin WITHOUT the 's' (we need a real number for math):
+kids = input('How many kids fit on one bus? ');
 
-# TASK 5 — the two story blanks take any box; the natural pick is the
-# animal box in both (running gags are comedy law):
-print()
-print("========  THE FIELD TRIP OF DOOM  ========")
-print(f"Our class took a field trip to {place}.")
-print(f"The brochure promised it would be {adjective}.")
-print(f"The brochure did not mention the {animals}.")
-print(f"There were {kids} kids on our bus — but with 2 buses,")
-print(f"that's {kids * 2} kids for the {animals} to chase.")
-print("Nobody has returned the permission slips since.")
-print("==========================================")
+% TASK 5 — the two story slots take any box; the natural pick is the
+% animal box in both (running gags are comedy law):
+disp(' ')
+disp('========  THE FIELD TRIP OF DOOM  ========')
+fprintf('Our class took a field trip to %s.\n', place)
+fprintf('The brochure promised it would be %s.\n', adjective)
+fprintf('The brochure did not mention the %s.\n', animals)
+fprintf('There were %d kids on our bus — but with 2 buses,\n', kids)
+fprintf('that''s %d kids for the %s to chase.\n', kids * 2, animals)
+disp('Nobody has returned the permission slips since.')
+disp('==========================================')
 
-# TASK 6 — anything the class dictates, e.g.:
-print(f"The {animals} now run the gift shop at {place}.")
+% TASK 6 — anything the class dictates, e.g.:
+fprintf('The %s now run the gift shop at %s.\n', animals, place)
 ```
 
 Common wrong answers worth typing anyway:
 
-- Task 1: `print(...)` — runs, but shows the question and waits for NOTHING;
-  the box gets Python's "nothing" value, and the story later reads "a field
-  trip to None." Ask the class: did the computer ever actually *ask* us? Great chase.
-- Task 3: a prompt without quotes → `NameError` (or `SyntaxError`) — strings wear quotes.
-- Task 4: skipping `int` → the story runs but `{kids * 2}` prints `3030`-style
-  gibberish (string repetition!) — let the class spot the nonsense number.
-- Task 6: forgetting the `f` → braces print literally. Planned. Enjoy it.
+- Task 1: `disp(...)` instead of `input(...)` — MATLAB stops with
+  `Error using disp` / `Too many output arguments.` — disp can *show* a question
+  but it can't wait for an answer or hand one back. Great chase: what do we need
+  that disp doesn't do?
+- Task 3: a prompt without quotes → `Unrecognized function or variable '...'` —
+  strings wear quotes, week 1 forever.
+- Task 4: keeping the `'s'` twin → the story runs but the math line prints
+  nonsense numbers — MATLAB did arithmetic on the *character codes* of the text
+  (`'3'` is secretly 51!). Let the class spot the impossible bus count. That
+  secret is week 8's whole lesson, leaked early.
+- Task 6: forgetting the `\n` → the next printed line glues onto the story's
+  last sentence. Planned. Enjoy it.
 
-## `3-predict-the-output.py` — answers
+## `predict_the_output.m` — answers
 
 | Round | Answer | Why |
 |-------|--------|-----|
-| 1 | **A** — `Hello, Marcus!` | `input()` drops `Marcus` into the box; the f-string swaps `{name}` for the box's value. |
-| 2 | **B** — `55` | `+` between two strings GLUES. `"5" + "5"` is text next to text — no math happened, and no error either. |
-| 3 | **B** — `Hi, {name}! Welcome back!` | No `f` before the quote → the braces are just characters. Not an error — Python happily prints them unfilled. |
-| 4 | **B** — `15` | `int("10")` converts text to the number 10 first, then real addition: 10 + 5. |
-| 5 | **C** — `14` then `77` | Same `+`, two jobs: numbers add, strings glue. The quotes decide which world you're in. |
-| Final | **C** — it crashes | `age` holds the STRING `"12"`. `"12" + 1` is glue-a-number-to-text → `TypeError: can only concatenate str (not "int") to str`. *(The traceback on screen is simulated with prints so the game can finish — the error text is the real one.)* |
+| 1 | **A** — `Hello, Marcus!` | `input(…,'s')` drops the word `Marcus` into the box; fprintf swaps the `%s` slot for the box's value. |
+| 2 | **A** — `13` | No `'s'`, but the answer `12` is a number — perfectly good code. It lands as a real number and `age + 1` is real math. |
+| 3 | **B** — `onetwo`, one line | fprintf only starts a new line where a `\n` says so. The first fprintf never pressed Enter, so the second glues right on. |
+| 4 | **A** — `2 plus 3 makes 5` | Slots fill in order: 2, then 3, then the *evaluated* expression `2 + 3`. A slot can hold math — MATLAB crunches it mid-sentence. |
+| 5 | **A** — `77` then `14` | `['7', '7']` GLUES text → the text `77`. `7 + 7` ADDS numbers → `14`. Same symbols, different worlds — the quotes decide which one you're in. |
+| Final | **C** — red text | No `'s'`, and `cat` isn't a number — MATLAB reads it as CODE and hunts for a box named cat: `Unrecognized function or variable 'cat'.` *(The reveal is simulated with a printed error so the game can finish — live, MATLAB shows the error and then asks the question AGAIN.)* |
 
 ## Handout answers
 
@@ -59,38 +63,41 @@ Common wrong answers worth typing anyway:
 
 ```
 A walrus ate my homework!
-A {animal} ate my homework!
+A %s ate my homework!
 ```
 
-(Line 2 has no `f` — the braces never get filled.)
+(Line 2 uses `disp`, which has no slots — the `%s` is just characters to it.
+Only `fprintf` fills slots.)
 
 **2 · Adding or gluing?**
 
 ```
 6        (numbers add)
-33       (strings glue)
-5        (int converts first, then adds)
-haha     (strings glue — Python's first laugh)
+33       (text glues — that's the TEXT 33, not the number)
+haha     (text glues — MATLAB's first laugh)
+12       (looks like a number, but it's glued text: '1' next to '2')
 ```
 
 **3 · Spot the bug**
 
-The bug: `age` is a **string** (`"12"`), so `age + 1` tries to glue a number onto
-text and crashes with a TypeError. Fixed line 2:
+The bug: no `'s'` flag, so MATLAB read `Ada` as code and hunted for a box named
+Ada. Fixed line 1:
 
-```python
-print("Next year:", int(age) + 1)
+```matlab
+name = input('Name? ', 's');
 ```
 
-(Also correct: converting on line 1 with `age = int(input("Age? "))` — praise
-anyone who invents that; it's the pro move from the challenge file.)
+(Anyone who also explains *why* line 1 worked fine in Round 2 of the voting game —
+numbers are legal code — gets bonus glory.)
 
 ## Brain teaser guidance
 
-No single right answer. Praise: prompts that wear quotes, box names in braces,
-a box reused twice (running gag!), and any math inside braces like `{number * 100}`.
-Common gaps to gently fix when you type theirs in: a missing `f`, a number blank
-that never gets `int()` (only matters if they do math with it), and box names with
-spaces. **Keep the promise**: type the best one into VS Code next week and run it
-with the author supplying the inputs. That 90 seconds buys you weeks of homework
-enthusiasm.
+No single right answer. Praise: prompts that wear quotes, `'s'` flags on every
+word question, a number question *without* the `'s'`, a box reused in two slots
+(running gag!), `\n` at the end of each sentence, and any math inside a `%d` slot
+like `number * 100`. Common gaps to gently fix when you type theirs in: a missing
+`'s'` (it will crash exactly like Ada — let it, then fix it), a missing `\n`
+(smooshed lines), slots and boxes listed in different orders, and apostrophes in
+the story (double them: `'that''s'`). **Keep the promise**: type the best one into
+MATLAB next week and run it with the author supplying the inputs. That 90 seconds
+buys you weeks of homework enthusiasm.

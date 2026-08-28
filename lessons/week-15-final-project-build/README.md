@@ -13,15 +13,15 @@ By the end of class, students can:
 1. Explain that a text adventure is a **map of rooms** connected by **choices** —
    an if/else made physical
 2. Design a room on paper with a description, two choices, and where each leads
-3. Recognize the parts of the game engine as old friends: `input()` (week 3),
-   `if/else` (week 4), `while` (week 7), functions (week 10)
+3. Recognize the parts of the game engine as old friends: `input(...,'s')` (week 3),
+   `if/else` (week 4), `while` (week 7), functions in their own files (week 10)
 4. Vote, argue, and compromise their way to ONE class story (the secret objective)
 
 ## Design words
 
 | Word | Kid-friendly definition |
 |------|------------------------|
-| **room** | one scene of the game — a description plus a choice (one function each) |
+| **room** | one scene of the game — a description plus a choice (one function file each) |
 | **choice** | the A-or-B question at the end of a room — a live if/else |
 | **map** | the diagram of rooms and arrows showing where every choice leads |
 | **ending** | a room where the game stops — win, lose, or something weirder |
@@ -37,12 +37,16 @@ room to an ending?"* Trace them with a finger and count — two choices per room
 multiply fast (that's why 5 rooms is plenty). Then the professional version of the
 question: *"Have we walked every path? Does every choice lead SOMEWHERE?"* — that's
 **test coverage**, and checking it on paper is real software engineering with a marker.
+Bonus MATLAB flavor: the map is also visible as a *list of files* — one room per `.m`
+file in the Current Folder pane. The folder IS the map.
 
 ## Before class
 
 - [ ] Print `handout.md` — the **design sheet** — one per pair/group, plus spares
-- [ ] Open this folder in VS Code, zoom fonts for the smartboard (see `TEACHER-GUIDE.md`)
-- [ ] Test-run `1-demo.py` once so you can play it smoothly (any path — it's short)
+- [ ] Open MATLAB, set the Current Folder to this lesson's folder (**important today**:
+      the rooms are separate function files, and MATLAB only finds them from the
+      current folder), zoom fonts for the smartboard (see `TEACHER-GUIDE.md`)
+- [ ] Test-run `lesson_demo.m` once so you can play it smoothly (any path — it's short)
 - [ ] Board markers ready: you'll draw the map live
 - [ ] Read `answer-key.md`'s sample story so you know what a finished skeleton looks like
 - [ ] Shout-outs ready for week 14's sneaky-carnival-game designers — if one stands
@@ -58,9 +62,9 @@ repeated forever). Then the pivot: *"Fourteen weeks of parts: printing, variable
 input, ifs, loops, functions. Today we stop collecting parts. We're building the
 machine — and it's a GAME, and YOU are designing it."*
 
-### 0:02–0:07 · Hook: play `1-demo.py` live
+### 0:02–0:07 · Hook: play `lesson_demo.m` live
 
-No explanation first — just run it. It's "Escape the Teachers' Lounge," a 3-room
+No explanation first — just run it (F5). It's "Escape the Teachers' Lounge," a 3-room
 adventure. The class shouts the choices (majority rules), you type A or B. Reach an
 ending — win or lose, either is funny — then say:
 
@@ -68,6 +72,10 @@ ending — win or lose, either is funny — then say:
 > slowly; the comments name the week each technique came from) *"— input, week 3.
 > If/else, week 4. Functions, week 10. This is a greatest-hits album. And next week,
 > we play YOURS."*
+
+Then the MATLAB flourish: point at the Current Folder pane — `demo_room_lounge.m`,
+`demo_room_hallway.m`, `demo_room_closet.m`, two endings. *"One room per file. The
+folder is the map of the game."*
 
 ### 0:07–0:12 · Theme vote
 
@@ -102,12 +110,15 @@ gory, dead ends need a reason.
 
 ### 0:34–0:42 · Assembly begins
 
-Open `2-fill-in-the-blank.py` — the class game skeleton: five room functions and two
-endings, fully wired, with blanks where the *story* goes. Collect a finished sheet or
-two and fill Room 1 live: read the group's description aloud, type it into the blanks,
-wire the choices to the rooms their sheet names, and **run it**. The authors of Room 1
-get to hear their words come out of the computer today. Fill as many rooms as time
-allows — unfinished is fine (see below).
+Open `fill_in_the_blank.m` — the class game skeleton. The engine is fully wired the
+MATLAB way: this script holds the title and play-again loop, and the five rooms and
+two endings live in `room_1.m` … `room_5.m`, `ending_good.m`, `ending_bad.m`, with
+blanks where the *story* goes. Collect a finished sheet or two and fill Room 1 live:
+open `room_1.m`, read the group's description aloud, type it into the blanks, wire
+the choices by typing the calls the sheet names (`room_2()`, `ending_bad()`, …) into
+the marked if/else branches, and **run the script**. The authors of Room 1 get to
+hear their words come out of the computer today. Fill as many rooms as time allows —
+unfinished is fine (see below).
 
 ### 0:42–0:45 · Wrap-up
 
@@ -135,9 +146,9 @@ it's story-agnostic.
 
 ## If you have extra time
 
-Open `4-challenge.py`: four upgrade modules ready to bolt onto the class game — a
-health counter, a random janitor encounter, a secret key, and a Caesar-ciphered clue
-(week 9 rides again). Each is a self-contained mini-demo with graft instructions.
+Open `challenge.m`: four upgrade modules ready to bolt onto the class game — a
+health counter, a random janitor encounter, a secret key flag, and a Caesar-ciphered
+clue (week 9 rides again). Each is a self-contained mini-demo with graft instructions.
 Demo one and let the class vote on which upgrade their game gets next week.
 
 ## Common pitfalls
@@ -152,6 +163,10 @@ Demo one and let the class vote on which upgrade their game gets next week.
   and let the class patch the graph.
 - **Two groups want the same room.** Numbering off during assignment prevents it;
   if it happens anyway, one group's version becomes the take-home secret room.
+- **`Unrecognized function or variable 'room_2'` when a choice runs.** Either the
+  Current Folder isn't this lesson's folder (click **Change Folder** when MATLAB
+  offers), or you typed a room name that doesn't match its file. The file's name IS
+  the function's name — MATLAB's one strict rule.
 - **You try to finish the whole build today.** Don't. One room, typed live, running
   on screen, written by kids — that's the win condition for today. The rest is
   week 16's fuel.

@@ -2,26 +2,27 @@
 
 **Name: ______________________ Date: __________**
 
-> A `while` loop repeats **until its condition goes False**. No update line → it never stops!
+> A `while` loop repeats **until its condition fails**. No update line → it never stops!
 
 ## Today's words
 
 | Word | What it means |
 |------|---------------|
-| **`while` loop** | repeats as long as its condition stays True |
-| **condition** | the True/False check before every lap |
+| **`while` loop** | repeats as long as its condition holds |
+| **condition** | the yes/no check (1 or 0) before every lap |
 | **update line** | the line inside that changes the variable — the escape route |
 | **infinite loop** | a loop that never stops (escape hatch: **Ctrl+C**) |
 | **binary search** | always guess the middle — half the suspects vanish each time |
 
 ## 1 · Be the computer: trace the loop 🤖
 
-```python
-n = 6
-while n > 0:
-    print(n)
-    n = n - 2
-print("done")
+```matlab
+n = 6;
+while n > 0
+    disp(n)
+    n = n - 2;
+end
+disp('done')
 ```
 
 | lap | what prints | `n` after the update |
@@ -32,7 +33,7 @@ print("done")
 
 Last line on the screen: ____________
 
-Danger question: if the line `n = n - 2` were deleted, what would happen?
+Danger question: if the line `n = n - 2;` were deleted, what would happen?
 
 _________________________________________________
 

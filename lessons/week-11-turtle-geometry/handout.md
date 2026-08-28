@@ -9,9 +9,10 @@
 
 | Word | What it means |
 |------|---------------|
-| **turtle** | Python's drawing robot — it draws everywhere it walks |
+| **turtle** | our drawing robot — it draws everywhere it walks |
+| **toolbox** | nine little function files that ARE the turtle — you can read them! |
 | **`forward(n)` / `right(d)`** | walk n steps / spin d degrees (turning never draws) |
-| **`penup()` / `pendown()`** | lift the pen to move invisibly / put it back down |
+| **`penup` / `pendown`** | lift the pen to move invisibly / put it back down |
 | **exterior angle** | the turn at a corner — the outside; what the turtle turns |
 | **interior angle** | the angle inside the corner — always 180 − the turn |
 
@@ -20,12 +21,12 @@
 Your pencil is the pen. Start at **S**, facing **→**. One grid square = 20 steps.
 Draw the turtle's path.
 
-```python
-turtle.forward(60)
-turtle.right(90)
-turtle.forward(40)
-turtle.right(90)
-turtle.forward(60)
+```matlab
+forward(60)
+right(90)
+forward(40)
+right(90)
+forward(60)
 ```
 
 ```
@@ -56,11 +57,12 @@ Fill in the missing values. (Turn = 360 / n. Interior = 180 − turn.)
 
 This was supposed to draw a square. Circle the bug, then answer below.
 
-```python
-import turtle
-for side in range(4):
-    turtle.forward(100)
-turtle.right(90)
+```matlab
+turtle_start
+for side = 1:4
+    forward(100)
+end
+right(90)
 ```
 
 What does it draw instead? ______________________
@@ -71,6 +73,6 @@ What does it draw instead? ______________________
 
 Write the turtle commands to draw a **rectangle 200 steps wide and 100 steps
 tall** — *or* the **first letter of your first name**. Rules: only
-`forward( )`, `backward( )`, `right( )`, `left( )`, `penup()`, and `pendown()`,
+`forward( )`, `backward( )`, `right( )`, `left( )`, `penup`, and `pendown`,
 one command per line. Trace it with your finger to test — you are the turtle.
 Bring it next week for a shout-out (we may run it on the smartboard!).

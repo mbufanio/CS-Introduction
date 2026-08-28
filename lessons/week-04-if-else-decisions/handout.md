@@ -2,33 +2,35 @@
 
 **Name: ______________________ Date: __________**
 
-> A comparison is a **question**. The answer is `True` or `False`. `if` runs its
-> indented block only when the answer is True.
+> A comparison is a **question**. The computer answers `1` (yes) or `0` (no).
+> `if` runs its block only when the answer is 1 — and `end` closes the decision.
 
 ## Today's words
 
 | Word | What it means |
 |------|---------------|
-| **boolean** | a value with only two options: `True` or `False` |
-| **comparison** | a question about values: `> < >= <= == !=` |
+| **logical** | the computer's answer to a question: `1` = yes, `0` = no |
+| **comparison** | a question about values: `> < >= <= == ~=` |
 | **condition** | the question an `if` checks before deciding |
-| **`if` / `elif` / `else`** | if this... otherwise if this... otherwise. ONE branch runs |
-| **indent** | the sideways space meaning "this line belongs to the if" |
+| **`if` / `elseif` / `else`** | if this... otherwise if this... otherwise. ONE branch runs |
+| **`end`** | closes the decision — every `if` gets one |
+| **`~=`** | not equal (the `~` is a wiggly NOT) |
 
 ## 1 · Be the computer 🤖
 
 Trace top-down and write the ONE line that prints:
 
-```python
-temperature = 12
-if temperature >= 28:
-    print("melting")
-elif temperature >= 15:
-    print("perfect")
-elif temperature >= 0:
-    print("jacket")
-else:
-    print("frozen")
+```matlab
+temperature = 12;
+if temperature >= 28
+    disp('melting')
+elseif temperature >= 15
+    disp('perfect')
+elseif temperature >= 0
+    disp('jacket')
+else
+    disp('frozen')
+end
 ```
 
 The screen shows: ______________________
@@ -50,15 +52,17 @@ If the rule were `> 132`, the rider at exactly 132 would: __________________
 
 Each snippet has **one** mistake. Circle it.
 
-```python
-1.  if age = 13:
-        print("teen")
+```matlab
+1.  if age = 13
+        disp('teen')
+    end
 
 2.  if age >= 13
-        print("teen")
+        disp('teen')
 
-3.  if age >= 13:
-    print("teen")        ← this line is supposed to belong to the if
+3.  if age != 13
+        disp('not thirteen')
+    end
 ```
 
 ---
@@ -68,11 +72,12 @@ Each snippet has **one** mistake. Circle it.
 **The hat with a hole in it.** A student wrote this Sorting Hat, but ONE
 lucky number makes it misbehave. Which number, and what happens to it?
 
-```python
-if lucky > 50:
-    print("Team Waffle")
-elif lucky < 50:
-    print("Team Goat")
+```matlab
+if lucky > 50
+    disp('Team Waffle')
+elseif lucky < 50
+    disp('Team Goat')
+end
 ```
 
 Then fix it: rewrite the rules (you're allowed to change `>` and `<` to

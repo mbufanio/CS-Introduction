@@ -2,38 +2,39 @@
 
 **Name: ______________________ Date: __________**
 
-> `range` chant: **starts at 0 · jumps by step · stops BEFORE the wall.**
+> Colon chant: **first : difference : last — and the last one COUNTS.**
 
 ## Today's words
 
 | Word | What it means |
 |------|---------------|
-| **`for` loop** | repeats a block a set number of times |
+| **`for` loop** | repeats a block a set number of times, closed by `end` |
 | **loop variable** | the lap counter (`i`) — changes every lap |
-| **`range(start, stop, step)`** | deals numbers: from start, jumping by step, stopping *before* stop |
+| **colon sequence `start:step:stop`** | deals numbers: first term, jump size, last term — last one **included** |
 | **accumulator** | a snowball variable: `total = total + n` |
-| **`"*" * i`** | i copies of the star, glued together |
+| **`repmat('*', 1, n)`** | the repeater — n copies of the star, glued together |
 
-## 1 · Match the sequence to its range 🔗
+## 1 · Match the sequence to its colon 🔗
 
-Draw a line from each sequence to the `range` that makes it. (One range is a
-fake — it matches nothing!)
+Draw a line from each sequence to the colon expression that makes it. (One
+expression is a fake — it makes NOTHING: an empty sequence!)
 
-| Sequence | | `range` call |
+| Sequence | | colon expression |
 |---|---|---|
-| 0, 1, 2, 3, 4 | | `range(2, 11, 2)` |
-| 2, 4, 6, 8, 10 | | `range(5)` |
-| 5, 10, 15, 20 | | `range(10, 0, -1)` |
-| 10, 9, 8, … 1 | | `range(1, 5)` |
-| | | `range(5, 21, 5)` |
+| 1, 2, 3, 4, 5 | | `2:2:10` |
+| 2, 4, 6, 8, 10 | | `1:5` |
+| 5, 10, 15, 20 | | `10:-1:1` |
+| 10, 9, 8, … 1 | | `5:1:1` |
+| | | `5:5:20` |
 
 ## 2 · Be the computer: trace the snowball 🤖
 
-```python
-total = 0
-for n in range(1, 5):
-    total = total + n
-print(total)
+```matlab
+total = 0;
+for n = 1:4
+    total = total + n;
+end
+disp(total)
 ```
 
 Fill in the table, one lap per row, then the final line:
@@ -49,12 +50,13 @@ The screen shows: ____________
 
 ## 3 · What prints? ⭐
 
-```python
-for i in range(1, 4):
-    print("*" * i)
+```matlab
+for i = 1:3
+    disp(repmat('*', 1, i))
+end
 ```
 
-Draw the exact output: 
+Draw the exact output:
 
 &nbsp;
 
@@ -66,6 +68,6 @@ Gauss beat his teacher by pairing numbers: 1+100, 2+99, … = 50 pairs of 101 = 
 
 **Use his trick — no computer, no calculator — to add 1 + 2 + 3 + … + 1000.**
 How many pairs? What does each pair add up to? Then the showdown question:
-which range would make a loop check your answer — `range(1000)` or
-`range(1, 1001)` — and *why does the other one get it wrong?*
-Bring your answer next week for a shout-out.
+which colon sequence would make a loop check your answer — `1:1000` or
+`0:999` — and *why does the other one get it wrong?* (Both deal exactly 1000
+numbers…) Bring your answer next week for a shout-out.
