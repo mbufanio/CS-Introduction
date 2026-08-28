@@ -35,12 +35,14 @@ Ways to make **10**: ____ of 36
 
 Follow the code exactly. (No randomness — one right answer!)
 
-```python
-count = 0
-for n in range(2, 9):
-    if n > 5:
-        count = count + 1
-print(count)
+```matlab
+count = 0;
+for n = 2:8
+    if n > 5
+        count = count + 1;
+    end
+end
+disp(count)
 ```
 
 Which values of `n` does the loop visit? ______________________

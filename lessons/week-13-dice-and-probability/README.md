@@ -7,7 +7,7 @@
 By the end of class, students can:
 
 1. Read and explain the **simulation pattern**: loop many trials → check each with
-   `if` → count the hits → `percentage = count / trials * 100`
+   `if` → count the hits → `percent = count / trials * 100`
 2. Tell **experimental** probability (what happened) from **theoretical**
    probability (what math predicts)
 3. Explain the **law of large numbers**: more trials → the experiment crawls toward
@@ -35,13 +35,14 @@ sixes crawl toward the theoretical 16.67% (the law of large numbers, live on scr
 Then two dice: the class sees the full 36-outcome sample space printed as a grid,
 counts six ways to make 7 versus one way to make 2, and watches the simulation agree
 with the grid — experiment and theory shaking hands at 16.7% and 2.8%. Percent
-computation (`count / trials * 100`) runs through everything.
+computation (`count / trials * 100`) runs through everything, printed with
+`fprintf('%.2f%%', ...)` — yes, the doubled `%%`; see the pitfalls.
 
 ## Before class
 
 - [ ] Print `handout.md` (one per student), have `answer-key.md` open or printed
 - [ ] **Bring a real die** — a big foam one is ideal. Board space for a tally chart
-- [ ] Dry-run `1-demo.py` — the million-roll section takes a couple of seconds;
+- [ ] Dry-run `lesson_demo.m` — the million-roll section takes a couple of seconds;
       practice narrating the pause ("it is rolling a MILLION dice right now")
 - [ ] If you collected week 12 spirograph designs: pick 1–2 to run as the warm-up
 - [ ] Your numbers WILL differ from the answer key's — that's the topic. Enjoy it.
@@ -51,9 +52,10 @@ computation (`count / trials * 100`) runs through everything.
 ### 0:00–0:02 · Last time
 
 If you have student spirograph designs from week 12: run one or two right now in
-`week-12-turtle-art/1-demo.py` Section 7 (set the dials to the student's design —
-instant celebrity, 90 seconds max). Then the bridge: *"Turtle week is over, but two
-old friends stay with us today: the for loop, and week 5's `random`."*
+`week-12-turtle-art/lesson_demo.m` Section 7 (set the `TWEAK THESE` dials to the
+student's design — instant celebrity, 90 seconds max; remember to `cd` back to this
+week's folder afterward). Then the bridge: *"Turtle week is over, but two old friends
+stay with us today: the for loop, and week 5's `randi`."*
 
 ### 0:02–0:09 · Hook: is my die broken?
 
@@ -66,34 +68,38 @@ maybe four sixes. Play it up:
 > to KNOW — a hundred? A thousand? ...What if I told you we could roll a die a
 > MILLION times before the bell rings?"*
 
-### 0:09–0:24 · Demo: `1-demo.py`
+### 0:09–0:24 · Demo: `lesson_demo.m`
 
-Run the file once; it pauses in the terminal between sections. Beats to hit:
+Run the file (F5); it pauses in the Command Window between sections. Beats to hit:
 
-- One simulated roll — `randint(1, 6)`, week 5's old friend
+- One simulated roll — `randi([1 6])`, week 5's old friend (watch `roll`'s box in
+  the Workspace change on every re-run)
 - Ten rolls in a loop — lumpy, *just like the real die*. Same problem, same cause
+- **The tally chart, computer edition** — 600 rolls, six counters, and `repmat`
+  drawing a `#` bar per face right in the Command Window: your board tally's big
+  sibling, already noticeably flatter
 - **The simulation pattern** (count sixes in 100 rolls) — name its four steps out
   loud: loop, roll, `if` counts the hits, percent line at the end
-- ⭐ **THE ZOOM-OUT**: same experiment at 100 → 10,000 → 1,000,000 trials. Predict
-  before each: closer to 16.67 or farther? Name the **law of large numbers** — it
-  sounds cool and it *is* cool
+- ⭐ **THE ZOOM-OUT**: same experiment at 100 → 10,000 → 1,000,000 trials (a colon
+  trick: `k = 2:2:6`, trials = `10^k`). Predict before each: closer to 16.67 or
+  farther? Name the **law of large numbers** — it sounds cool and it *is* cool
 - **Two dice**: 7 crushes 2 in the simulation... then the 36-cell grid prints and
   explains why: six ways to make 7, one way to make 2. The simulation and the grid
   AGREE — experiment meets theory
 - Wrap line: *"casinos know this math"* — next week's cliffhanger
 
-### 0:24–0:32 · Class writes code: `2-fill-in-the-blank.py`
+### 0:24–0:32 · Class writes code: `fill_in_the_blank.m`
 
 Kids call out what goes in each blank; you type and run after every task. Task 3 has
 no blank — you type the counting `if` live while the class supplies the `==`
-(watch someone offer a single `=`; type it, enjoy the error, debug as a class).
+(watch someone offer a single `=`; type it, enjoy the complaint, debug as a class).
 Completed code is in `answer-key.md`.
 
-### 0:32–0:38 · Voting game: `3-predict-the-output.py`
+### 0:32–0:38 · Voting game: `predict_the_output.m`
 
 Six rounds, all runnable — two of them run real simulations as the reveal. Round 3
-is a decimal-point trap, and the final round is genuinely sneaky (which percentage
-is *impossible* in 10 rolls?). Vote, reveal, have a winner explain.
+is a decimals trap, and the final round is genuinely sneaky (which percentage is
+*impossible* in 10 rolls?). Vote, reveal, have a winner explain.
 
 ### 0:38–0:43 · Handout
 
@@ -112,11 +118,11 @@ mathematically, why the casino always wins."*
 
 ## If you have extra time
 
-Open `4-challenge.py`: roll-until-doubles (how many tries? re-run three times!), the
+Open `challenge.m`: roll-until-doubles (how many tries? re-run three times!), the
 longest heads-streak in 10,000 coin flips (longer than anyone believes), the
-100-roll horse race between the six faces (class picks their horses first!), and a
-mystery die that the class must test for fairness using today's exact tools —
-spoiler-guarded rigging inside.
+dice derby — six faces race to 20 with `repmat` drawing the track live (class picks
+their horses first!) — and a mystery die that the class must test for fairness using
+today's exact tools — spoiler-guarded rigging inside.
 
 ## Common pitfalls
 
@@ -127,7 +133,13 @@ spoiler-guarded rigging inside.
   The key gives ranges ("about 16–17%") — narrate results that way.
 - **Kids read 16.67% as a guarantee** ("so 6 out of 36 rolls WILL be sixes").
   Re-anchor: theory predicts the *long run*, not any particular batch.
-- **The million-roll pause.** Two-ish silent seconds can feel like a crash. Narrate
-  it: *"right now it's on roll four hundred thousand..."*
-- **`=` vs `==` in the counting `if`.** A classic returns. Let the error do the
-  teaching — week 4 veterans in the room will pounce on it.
+- **The million-roll pause.** A couple of silent seconds can feel like a crash.
+  Narrate it: *"right now it's on roll four hundred thousand..."*
+- **`%%` inside fprintf.** `%` starts a comment in MATLAB, so printing a percent
+  sign takes two: `fprintf('%.2f%%', pct)`. Expect "why two?" — answer: *"one % is
+  a note for humans; %% is how a program says 'percent' out loud."* (And no, `%`
+  doesn't do remainders in MATLAB — that's `mod()`.)
+- **`=` vs `==` in the counting `if`.** A classic returns. In MATLAB, `if roll = 6`
+  stops with `Incorrect use of '=' operator. To compare values for equality,
+  use '=='.` — the error IS the lesson; let a week 4 veteran pounce. (Octave is
+  softer: it only *warns* and plows on — read the warning aloud and fix it anyway.)

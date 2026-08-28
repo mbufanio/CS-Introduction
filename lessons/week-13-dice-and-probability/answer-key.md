@@ -3,62 +3,71 @@
 *Random results change every run — the counts below are typical ranges, not exact
 targets. Narrate your live numbers against these ranges.*
 
-## `2-fill-in-the-blank.py` — completed code
+## `fill_in_the_blank.m` — completed code
 
-```python
-import random
+```matlab
+% TASK 1 — randi: a whole number from 1 to 6, both ends included
+roll = randi([1 6]);
+fprintf('the computer rolled: %d\n', roll)
 
-# TASK 1 — randint: a whole number from 1 to 6, all equally likely
-roll = random.randint(1, 6)
-print("the computer rolled:", roll)
+% TASK 2 — ten rolls
+for i = 1:10
+    roll = randi([1 6]);
+    fprintf('roll %2d  →  %d\n', i, roll)
+end
 
-# TASK 2 — ten rolls
-for i in range(10):
-    roll = random.randint(1, 6)
-    print("roll", i + 1, "→", roll)
+% TASK 3 — type-it-live: the class supplies ==  (if someone offers a
+% single =, type it: MATLAB stops with "Incorrect use of '=' operator.
+% To assign a value to a variable, use '='. To compare values for
+% equality, use '=='." — the error message literally teaches the fix.
+% Octave is gentler: it only warns "suggest parenthesis around assignment
+% used as truth value" and keeps going — read the warning aloud, fix it.)
+count = 0;
+trials = 100;
+for i = 1:trials
+    roll = randi([1 6]);
+    if roll == 6
+        count = count + 1;
+    end
+end
 
-# TASK 3 — type-it-live: the class supplies ==  (a single = crashes with
-# a SyntaxError pointing right at it — let the class fix it)
-count = 0
-trials = 100
-for i in range(trials):
-    roll = random.randint(1, 6)
-    if roll == 6:
-        count = count + 1
+fprintf('sixes counted: %d out of %d rolls\n', count, trials)
 
-print("sixes counted:", count, "out of", trials, "rolls")
+% TASK 4 — count holds the sixes
+percent = count / trials * 100;
+fprintf('that is %.2f%% — theory says about 16.67%%\n', percent)
 
-# TASK 4 — count holds the sixes
-percent = count / trials * 100
-print("that is", percent, "percent — theory says about 16.67")
+% TASK 5 — any big number; e.g. 1000000 (a couple of seconds — narrate!)
+big_trials = 1000000;
+count = 0;
+for i = 1:big_trials
+    roll = randi([1 6]);
+    if roll == 6
+        count = count + 1;
+    end
+end
 
-# TASK 5 — any big number; e.g. 1000000 (a couple of seconds — narrate!)
-big_trials = 1000000
-count = 0
-for i in range(big_trials):
-    roll = random.randint(1, 6)
-    if roll == 6:
-        count = count + 1
+fprintf('out of %d rolls: %.2f%% sixes\n', big_trials, count / big_trials * 100)
 
-print("out of", big_trials, "rolls:", round(count / big_trials * 100, 2), "percent sixes")
+% TASK 6 — the total needs the second roll
+total = roll_a + roll_b;
 
-# TASK 6 — the total needs the second roll
-total = roll_a + roll_b
-
-# TASK 7 — the king of sums is 7 (six ways out of 36)
-if total == 7:
+% TASK 7 — the king of sums is 7 (six ways out of 36)
+if total == 7
 ```
 
 Typical results: Task 3 counts ~12–22 sixes; Task 5 lands within ~0.1 of 16.67
-with a million trials; Task 7 lands near 167 kings (16–17%).
+with a million trials; Task 7 lands near 167 kings (16–17%). And remember the
+doubled `%%` in the fprintf lines: `%` starts a comment in MATLAB, so a printed
+percent sign has to be typed twice — two on the way in, one on the way out.
 
-## `3-predict-the-output.py` — answers
+## `predict_the_output.m` — answers
 
 | Round | Answer | Why |
 |-------|--------|-----|
 | 1 | **B** — 7 | Two dice sum to 2 through 12. A (1) is below the minimum 1+1; C (13) is above the maximum 6+6. "Could happen" has a definite answer even when the roll doesn't. |
-| 2 | **A** — 3 | n visits 1,2,3,4,5,6; the `if` catches the evens 2, 4, 6. This is the exact counting pattern from the demo, rigged so it's traceable. |
-| 3 | **B** — 25.0 | `/` always produces a float in Python, even when the division is exact. C is the trap for kids who ignored the `* 100`. |
+| 2 | **A** — 4 | n visits 1 through 8 (the colon includes both ends); `mod(n, 2) == 0` catches the evens 2, 4, 6, 8. Four hits. This is the exact counting pattern from the demo, rigged so it's traceable. |
+| 3 | **A** — 25 | 25/100×100 = 25, and `disp` shows whole numbers plainly — no trailing zeros. C is the trap: `.00` only appears when fprintf is *told* to print decimals with `%.2f`. B forgot the × 100. |
 | 4 | **B** — 7 | The grid gives 7 six ways; 2 and 12 get one way each. Expect counts near 280 / 1670 / 280 — the simulation votes with the grid. |
 | 5 | **A** — closest to 16.7 | Law of large numbers. B is the deep trap: a million trials get *close*, but the result still wobbles run to run — theory is a target, not a guarantee. C confuses "random" with "anything goes." |
 | Final | **C** — 16.7% is impossible | With 10 rolls, the count is a whole number 0–10, so the percent is always a multiple of 10. Small experiments can't even *land* on the theory — which is exactly why the hook tally looked "broken." |
@@ -76,7 +85,8 @@ row 5: **6**, **11** · row 6: **11**
 - Ways to make **10**: **3** of 36 (4+6, 5+5, 6+4)
 
 **2 · Be the computer** — the loop visits **n = 2, 3, 4, 5, 6, 7, 8**
-(`range(2, 9)` stops before 9). The `if` catches 6, 7, 8 → it prints **3**.
+(MATLAB's colon includes both ends: `2:8` really means 2 through 8). The `if`
+catches 6, 7, 8 → it prints **3**.
 
 **3 · Experimental or theoretical?** — **E**, **T**, **E**. (The 10,000-coin flip
 is still *experimental* — a computer running trials is an experiment, just a fast
