@@ -38,7 +38,7 @@
 %% THE GAME ITSELF — a title screen and a play-again loop. That's it.
 
 disp(repmat('*', 1, 44))                       % the repeater — week 6
-disp('*      ESCAPE THE TEACHERS'' LOUNGE        *')
+disp('*      ESCAPE THE TEACHERS'' LOUNGE         *')
 disp('*      a text adventure by this class      *')
 disp(repmat('*', 1, 44))
 
